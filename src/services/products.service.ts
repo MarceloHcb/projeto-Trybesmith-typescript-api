@@ -3,6 +3,14 @@ import ProductModel from '../database/models/product.model';
 import { ServiceResponse } from '../types/ServiceResponse';
 
 type RegisterProductResponse = ServiceResponse < Product >;
+type GetAllProducts = ServiceResponse <unknown>;
+
+async function listProducts():Promise<GetAllProducts> {
+  const products = await ProductModel.findAll();  
+  const responseService: GetAllProducts = { status: 'SUCCESSFUL',
+    data: products }; 
+  return responseService;
+}
 
 async function registerProduct(product:Product):Promise<RegisterProductResponse> {
   const newProduct = await ProductModel.create(product);  
@@ -13,5 +21,6 @@ async function registerProduct(product:Product):Promise<RegisterProductResponse>
 }
 
 export default {
+  listProducts,
   registerProduct,
 };
