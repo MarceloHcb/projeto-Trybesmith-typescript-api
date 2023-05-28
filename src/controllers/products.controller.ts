@@ -14,7 +14,7 @@ async function listProducts(req:Request, res:Response):Promise<Response> {
 
 async function registerProduct(req:Request, res:Response): Promise<Response> {
   try {
-    const { status, data } = await productsService.registerProduct(req.body);
+    const { status, data } = await productsService.registerProduct(req.body);      
     if (status !== 'SUCCESSFUL') {
       return res.status(mapStatusHTTP(status)).json(data);
     }    
