@@ -16,8 +16,7 @@ async function login(username:string, password:string):Promise<LoginResponse> {
   }
   const { id } = loginConfirm.dataValues;
   const token = tokenUtils.createToken(id, loginConfirm.dataValues.username);
-  return { status: 'SUCCESSFUL',
-    data: token };
+  return { status: 'SUCCESSFUL', data: { token } };
 }
 
 export default { login };
