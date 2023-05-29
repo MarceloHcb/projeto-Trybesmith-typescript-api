@@ -4,7 +4,7 @@ import UserModel from '../database/models/user.model';
 import tokenUtils from '../auth/authFunctions';
 import { ServiceResponse } from '../types/ServiceResponse';
 
-type LoginResponse = ServiceResponse < Login >;
+export type LoginResponse = ServiceResponse < Login >;
 async function login(username:string, password:string):Promise<LoginResponse> {
   const loginConfirm = await UserModel.findOne({
     where: { username },

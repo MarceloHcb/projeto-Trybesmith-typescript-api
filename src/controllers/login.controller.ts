@@ -8,16 +8,11 @@ async function login(req:Request, res: Response) {
     return res.status(400)
       .json({ message: '"username" and "password" are required' });
   }
-  try {
-    const { status, data } = await loginService.login(username, password);
-    if (status !== 'SUCCESSFUL') {
-      return res.status(mapStatusHTTP(status)).json(data);
-    }      
-    return res.status(200).json(data);
-  } catch (error) {
-    console.log(error);    
-    return res.status(500).json('Erro interno');
-  }
+  const { status, data } = await loginService.login(username, password);
+  if (status !== 'SUCCESSFUL') {
+    return res.status(mapStatusHTTP(status)).json(data);
+  }      
+  return res.status(200).json(data);
 }
 
 export default { login };
