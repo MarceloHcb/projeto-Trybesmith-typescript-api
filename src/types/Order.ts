@@ -3,3 +3,8 @@ export type Order = {
   userId: number;
   productIds?: number[];
 };
+
+export type PostOrder = {
+  userId: number;
+  productIds?: number[];
+};

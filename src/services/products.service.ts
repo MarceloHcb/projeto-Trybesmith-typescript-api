@@ -1,7 +1,7 @@
 import { Product } from '../types/Product';
 import ProductModel, { ProductSequelizeModel } from '../database/models/product.model';
 import { ServiceResponse } from '../types/ServiceResponse';
-import productShemaFields from './validations/schemas';
+import valid from './validations/schemas';
 
 type RegisterProductResponse = ServiceResponse < Product >;
 
@@ -12,7 +12,7 @@ async function listProducts():Promise< ServiceResponse < ProductSequelizeModel[]
 }
 
 async function registerProduct(product:Product):Promise<RegisterProductResponse> {
-  const { error } = productShemaFields.validate(product);  
+  const { error } = valid.productShemaFields.validate(product);  
   if (error && error?.message?.split(' ')
     .pop()?.toUpperCase() === 'REQUIRED') {
     return { status: 'INVALID_DATA', data: { message: error.message } };

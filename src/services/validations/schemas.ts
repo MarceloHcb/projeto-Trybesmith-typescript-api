@@ -6,4 +6,15 @@ const productShemaFields = Joi.object({
   orderId: Joi.number(),
 });
 
-export default productShemaFields;
+const orderSchemaFields = Joi.object({
+  productIds: Joi.array().items(Joi.number()).min(1).required()
+    .messages({
+      'array.min': '"productIds" must include only numbers',
+    }),
+  userId: Joi.number().strict().integer().required(),
+});
+
+export default {
+  productShemaFields,
+  orderSchemaFields,
+};
